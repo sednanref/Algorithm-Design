@@ -38,19 +38,21 @@ int main(){
 			insignificant_set[i] = insignificant_w;
 		}
 
+		getline(cin, line);
 
 		while(true){
-			
-			getline(cin, line);
+			getline(cin, line);			
 			/*this is for buffer errors, sometimes it gets an empty line*/
-			if(line.compare("") == 0){
+			/*if(line.compare("") == 0){
 				continue;
-			}
+			}*/
 			/*if the line is the last case, go to the other test case*/
 			if(line.compare("LAST CASE") == 0){
 				cout<<line<<endl;
 				break;
 			}
+
+			istringstream iss(line);
 
 			cout<<line<<endl;
 			words = split(line, ' ');
