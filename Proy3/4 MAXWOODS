@@ -38,14 +38,14 @@ Sample Input:
 
 0TTTT
 
+
+T0#T0
+
 T#T#0
 
 #TT#T
 
 T00T0
-
-T0#T0
-
 1 1
 
 T
@@ -57,7 +57,7 @@ T#T
 TTT
 
 T#T
-
+	
 1 1
 
 #
