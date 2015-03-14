@@ -11,7 +11,14 @@ vector<string> words;	//the words of the line.
 string abbreviation;    //abbreviation of each case.
 string abbreviation_lower; //abbreviation in lower case.
 string cleaned_line;	//line without insignificant words.
+int n_words;		//number of words.
+int n_letters;		//number of letters of the acronym.
 
+
+int recursion(int i, int j){
+	
+
+}
 
 int main(){
 	while(true){
@@ -65,6 +72,9 @@ int main(){
 			cleaned_line =  cleaned_line + words[words.size() - 1];
 			
 			cout<<cleaned_line<<endl;
+			n_letters = abbreviation.size();
+			n_words = words.size();
+			cout<<n_letters<<" "<<n_words<<endl;
 		}
 		
 	}	
