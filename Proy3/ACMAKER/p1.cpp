@@ -13,10 +13,33 @@ string abbreviation_lower; //abbreviation in lower case.
 string cleaned_line;	//line without insignificant words.
 int n_words;		//number of words.
 int n_letters;		//number of letters of the acronym.
+int dp[150][150];	//dp structure
 
+int recursion(int w, int l){
+	if(dp[w][l] != -1){
+		return dp[w][l];
+	}
 
-int recursion(int i, int j){
-	
+	if(w > l){
+		return 0;
+	}
+
+	if((l == n_letters-1) && (w < n_words - 1)){
+		return 0;
+	}
+
+	if(dp[w][l] == -1){
+		for(int k = words[w].size() - 1; k >= 0; k--){
+			cout<<words[w][k];
+			if(words[w][k] == abbreviation_lower[l]){
+				dp[w][l] = 1 + max(recursion(w-1, l), recursion(w, l-1));
+				cout<<"ola"<<endl;
+			}
+		}
+
+	}
+
+	return dp[w][l];
 
 }
 
@@ -53,6 +76,7 @@ int main(){
 			//get the abbreviation of the case.
 			getline(iss, abbreviation, ' ');
 
+			//fill words with the significant words.
 			while(true){
 				if(getline(iss, word, ' ') == 0) break;
 				if(insignificant_set.find(word) == insignificant_set.end()){
@@ -63,18 +87,13 @@ int main(){
 			//Transform the abbreviation to lower case.
 			transform(abbreviation_lower.begin(), abbreviation_lower.end(), 
 					  abbreviation_lower.begin(), ::tolower);
-			//Line without the insignificant words.
-			cleaned_line.clear();
-			for(int i = 0; i < words.size() - 1; i++){
-				cleaned_line = cleaned_line + words[i] + " ";
-			}
-
-			cleaned_line =  cleaned_line + words[words.size() - 1];
 			
-			cout<<cleaned_line<<endl;
-			n_letters = abbreviation.size();
+			memset(dp, -1, sizeof(dp));
 			n_words = words.size();
-			cout<<n_letters<<" "<<n_words<<endl;
+			n_letters = abbreviation.size();
+			int answer = recursion(n_words - 1, n_letters-1);
+			cout<<answer<<endl;				
+	
 		}
 		
 	}	
