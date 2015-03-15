@@ -15,30 +15,29 @@ int n_words;		//number of words.
 int n_letters;		//number of letters of the acronym.
 int dp[150][150];	//dp structure
 
-int recursion(int w, int l){
+int recursion(int w, int l, int w_pos){
+
 	if(dp[w][l] != -1){
 		return dp[w][l];
 	}
 
-	if(w > l){
-		return 0;
-	}
-
-	if((l == n_letters-1) && (w < n_words - 1)){
-		return 0;
-	}
-
-	if(dp[w][l] == -1){
-		for(int k = words[w].size() - 1; k >= 0; k--){
-			cout<<words[w][k];
-			if(words[w][k] == abbreviation_lower[l]){
-				dp[w][l] = 1 + max(recursion(w-1, l), recursion(w, l-1));
-				cout<<"ola"<<endl;
-			}
+	//the word is ready
+	if((w_pos > words[w].size()){
+		//if it is da last word.
+		if(w == words.size()){
+			return 0;
 		}
-
+		//if not.. just go to the next word.
+		dp[w][l] = recursion(w+1, l, 0);
+		return dp[w][l];
 	}
 
+	
+
+	
+	if(dp[w][l] == -1){
+			
+	}
 	return dp[w][l];
 
 }
@@ -91,7 +90,7 @@ int main(){
 			memset(dp, -1, sizeof(dp));
 			n_words = words.size();
 			n_letters = abbreviation.size();
-			int answer = recursion(n_words - 1, n_letters-1);
+			int answer = recursion(0, 0, 0);
 			cout<<answer<<endl;				
 	
 		}
